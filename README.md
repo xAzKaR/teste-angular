@@ -12,7 +12,7 @@ Este é um projeto de teste para demonstrar conhecimento com o framework Angular
 ### Clone do repositório
 
 ```shell
-https://github.com/collaco/teste-angular.git
+git clone https://github.com/collaco/teste-angular.git
 cd teste-angular
 ```
 
@@ -34,11 +34,11 @@ O comando `npm run start` compila o aplicativo Angular e inicia um servidor de d
 
 Desligue-o manualmente com `Ctrl-C`.
 
-#### Executar Testes Unitários
+### Executar Testes Unitários
 
 ```shell
 npm run test
 ```
 
 O comando `npm test` executa os testes unitários da aplicação.               
-Será gerado um [Relatório de cobertura de código](coverage\teste\index.html) para todos os arquivos.
+Será gerado um [Relatório de cobertura de código](.\coverage\teste\index.html) para todos os arquivos.
