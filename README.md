@@ -41,4 +41,4 @@ npm run test
 ```
 
 O comando `npm test` executa os testes unitários da aplicação.               
-Será gerado um [Relatório de cobertura de código](.\coverage\teste\index.html) para todos os arquivos.
+Será gerado um Relatório de cobertura de código (coverage\teste\index.html) para todos os arquivos.
