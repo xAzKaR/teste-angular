@@ -40,5 +40,5 @@ Desligue-o manualmente com `Ctrl-C`.
 npm run test
 ```
 
-O comando `npm test` executa os testes unitários da aplicação.               
+O comando `npm run test` executa os testes unitários da aplicação.               
 Será gerado um Relatório de cobertura de código (coverage\teste\index.html) para todos os arquivos.
