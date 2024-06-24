@@ -1,27 +1,44 @@
-# Teste
+# Frontend Angular Test 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.11.
+Este é um projeto de teste para demonstrar conhecimento com o framework Angular. Ele contém todas as especificações solicitadas no documento [Especificação Frontend]("src\assets\Especificação Frontend.pdf"). O projeto foi gerado com [Angular CLI](https://github.com/angular/angular-cli) versão 16.2.11.
 
-## Development server
+## Iniciar
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Pré-requisitos
 
-## Code scaffolding
+- Node 18.10.0 ou superior
+- NPM 8.19.2 ou superior
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Clone do repositório
 
-## Build
+```shell
+https://github.com/collaco/teste-angular.git
+cd teste-angular
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Instalar pacotes npm
 
-## Running unit tests
+Instale os pacotes `npm` descritos em `package.json`:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```shell
+npm install
+```
 
-## Running end-to-end tests
+### Iniciar Aplicação
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```shell
+npm run start
+```
 
-## Further help
+O comando `npm run start` compila o aplicativo Angular e inicia um servidor de desenvolvimento. Ele então fornecerá uma URL local (http://localhost:4200) onde você poderá acessar e testar a aplicação no navegador.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Desligue-o manualmente com `Ctrl-C`.
+
+#### Executar Testes Unitários
+
+```shell
+npm run test
+```
+
+O comando `npm test` executa os testes unitários da aplicação.               
+Será gerado um [Relatório de cobertura de código](coverage\teste\index.html) para todos os arquivos.

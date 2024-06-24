@@ -1,0 +1,9 @@
+tbody th{
+  font-weight: normal;
+}
+
+table {
+  table-layout:fixed;
+  height: inherit !important;
+  max-height: 18rem !important;
+}

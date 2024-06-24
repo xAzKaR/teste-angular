@@ -1,0 +1,79 @@
+<div class="card h-100 mt-4">
+  <div class="card-body">
+    <h4 class="card-title">List movies</h4>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col" class="align-middle header-align col">Id</th>
+            <th
+              scope="col"
+              class="align-middle header-align col-2"
+            >
+              Year
+              <select
+                class="form-select"
+                aria-label="Search by year"
+                (change)="onChangeYear($event)"
+              >
+                <option hidden>Search by year</option>
+                <option *ngFor="let item of years" [value]="item">
+                  {{ item }}
+                </option>
+              </select>
+            </th>
+            <th scope="col" class="align-middle header-align col-7">Title</th>
+            <th
+              scope="col"
+              class="align-middle header-align col-2"
+            >
+              Winner?
+              <select
+                class="form-select"
+                aria-label="Search by winner"
+                (change)="onChangeWinner($event)"
+              >
+                <option hidden>Search by winner</option>
+                <option
+                  *ngFor="
+                    let item of [
+                      { value: 1, description: 'Yes' },
+                      { value: 0, description: 'No' }
+                    ]
+                  "
+                  [value]="item.value"
+                >
+                  {{ item.description }}
+                </option>
+              </select>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of data.content">
+            <td>{{ item.id }}</td>
+            <td>{{ item.year }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.winner ? "Yes" : "No" }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <pagination
+          [totalItems]="totalElements"
+          (pageChanged)="onPageChange($event)"
+          [itemsPerPage]="itemsPerPage"
+          [boundaryLinks]="true"
+          previousText="&lsaquo;"
+          nextText="&rsaquo;"
+          firstText="&laquo;"
+          lastText="&raquo;"
+        ></pagination>
+      </div>
+    </div>
+  </div>
+</div>
