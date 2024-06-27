@@ -15,18 +15,22 @@ import { PaginationMovieModel } from '@models/pagination-movie.model';
   styleUrls: ['./list.component.css'],
 })
 export class MovieListComponent implements OnInit {
+
+  /** Configuração de total de ítens por pagina */
+  readonly ITENS_PER_PAGE = 15;
+
   /** Mensagem de erro retornada por requisições HTTP */
   errorMessage: string;
 
   /** Página com lista de filmes */
   data!: PaginationMovieModel;
 
-  /** Configuração de total de ítens por pagina */
-  itemsPerPage: number;
   /** Página atual */
   currentPage!: number;
   /** Total de filmes */
   totalElements!: number;
+  /** Identifica mudanças nos filtros */
+  changeFilter: boolean;
 
   /** Lista de anos apresentados no campo Year */
   years: number[];
@@ -35,6 +39,8 @@ export class MovieListComponent implements OnInit {
   year?: number;
   /** Opção selecionada no campo Winner */
   winner?: boolean;
+
+
 
   /**
    * Construtor padrão da classe
@@ -47,9 +53,9 @@ export class MovieListComponent implements OnInit {
     private yearService: YearService
   ) {
     this.errorMessage = '';
-    this.itemsPerPage = 15;
     this.currentPage = 1;
     this.totalElements = 0;
+    this.changeFilter = false;
 
     this.years = yearService.mountPreviousYears(50);
     this.clearData();
@@ -67,26 +73,39 @@ export class MovieListComponent implements OnInit {
    * Consulta página de filmes
    */
   search() {
+
     this.clearData();
+
+    if (this.changeFilter) {
+      this.clearPagination();
+    }
+-
     this.movieService
       .getAllPaging(
         this.currentPage - 1,
-        this.itemsPerPage,
+        this.ITENS_PER_PAGE,
         this.year,
         this.winner
       )
       .subscribe({
         next: (data: any) => {
           this.data = data;
-          if (this.totalElements !== data.totalElements) {
-            this.totalElements = data.totalElements;
-          }
+          this.totalElements = data.totalElements;
+          this.changeFilter = false;
         },
         error: (error) => {
           this.errorMessage = error.message;
           console.error('There was an error!', error);
         },
       });
+  }
+
+  /**
+   * Limpa variáveis utilizadas no componente de paginação
+   */
+  clearPagination() {
+    this.totalElements = 0;
+    this.currentPage = 1;
   }
 
   /**
@@ -103,7 +122,7 @@ export class MovieListComponent implements OnInit {
         },
         offset: 0,
         pageSize: 15,
-        pageNumber: 15,
+        pageNumber: 0,
         paged: true,
         unpaged: false,
       },
@@ -129,8 +148,10 @@ export class MovieListComponent implements OnInit {
    * @param event PageChangedEvent
    */
   onPageChange(event: PageChangedEvent): void {
-    this.currentPage = event.page;
-    this.search();
+    if (this.currentPage !== event.page) {
+      this.currentPage = event.page;
+      this.search();
+    }
   }
 
   /**
@@ -139,7 +160,10 @@ export class MovieListComponent implements OnInit {
    * @param event any
    */
   onChangeYear(event: any): void {
-    this.year = event.target.value;
+    const v = event.target.value;
+    const oldValue = this.year;
+    this.year = (v !== '-1') ? v : undefined;
+    this.changeFilter = (this.year !== oldValue);
     this.search();
   }
 
@@ -149,7 +173,10 @@ export class MovieListComponent implements OnInit {
    * @param event any
    */
   onChangeWinner(event: any): void {
-    this.winner = event.target.value;
+    const v = event.target.value;
+    const oldValue = this.winner;
+    this.winner = (v !== '-1') ? v : undefined;
+    this.changeFilter = (this.winner !== oldValue);
     this.search();
   }
 }

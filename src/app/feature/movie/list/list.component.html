@@ -17,6 +17,7 @@
                 (change)="onChangeYear($event)"
               >
                 <option hidden>Search by year</option>
+                <option value="-1">All Years</option>
                 <option *ngFor="let item of years" [value]="item">
                   {{ item }}
                 </option>
@@ -34,6 +35,7 @@
                 (change)="onChangeWinner($event)"
               >
                 <option hidden>Search by winner</option>
+                <option value="-1">All Winners</option>
                 <option
                   *ngFor="
                     let item of [
@@ -66,7 +68,7 @@
         <pagination
           [totalItems]="totalElements"
           (pageChanged)="onPageChange($event)"
-          [itemsPerPage]="itemsPerPage"
+          [itemsPerPage]="ITENS_PER_PAGE"
           [boundaryLinks]="true"
           previousText="&lsaquo;"
           nextText="&rsaquo;"
