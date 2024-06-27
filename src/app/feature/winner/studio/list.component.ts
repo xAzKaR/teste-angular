@@ -19,8 +19,12 @@ export class WinnerStudioListComponent {
   /** lista de estudios */
   data!: StudioListModel;
 
+  /** Total de registros a serem apresentados */
+  totalMostWinners: number;
+
   constructor(private studioService: StudioService) {
     this.errorMessage = '';
+    this.totalMostWinners = 3;
     this.clearData();
   }
 
@@ -41,7 +45,7 @@ export class WinnerStudioListComponent {
         .getAll()
         .subscribe({
           next: (data: any) => {
-            this.data.studios = data.studios;
+            this.data.studios = data.studios.slice(0, 3);
           },
           error: error => {
               this.errorMessage = error.message;
