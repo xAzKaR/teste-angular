@@ -5,36 +5,30 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col" class="align-middle header-align col">Id</th>
-            <th
-              scope="col"
-              class="align-middle header-align col-2"
-            >
+            <th class="align-middle header-align col-1 col-sm-1">Id</th>
+            <th class="align-middle header-align col-3 col-sm-3">
               Year
               <select
                 class="form-select"
                 aria-label="Search by year"
                 (change)="onChangeYear($event)"
               >
-                <option hidden>Search by year</option>
+                <option disabled selected class="placeholder-ellipsis disabled-option">Search by year</option>
                 <option value="-1">All Years</option>
                 <option *ngFor="let item of years" [value]="item">
                   {{ item }}
                 </option>
               </select>
             </th>
-            <th scope="col" class="align-middle header-align col-7">Title</th>
-            <th
-              scope="col"
-              class="align-middle header-align col-2"
-            >
+            <th class="align-middle header-align col-5 col-sm-5">Title</th>
+            <th class="align-middle header-align col-3 col-sm-3">
               Winner?
               <select
                 class="form-select"
                 aria-label="Search by winner"
                 (change)="onChangeWinner($event)"
               >
-                <option hidden>Search by winner</option>
+                <option disabled selected class="placeholder-ellipsis disabled-option">Search by winner</option>
                 <option value="-1">All Winners</option>
                 <option
                   *ngFor="

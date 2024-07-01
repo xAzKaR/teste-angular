@@ -1,4 +1,11 @@
-.fieldSelect {
-  width: 93%;
-  margin-right: 5px
+select, div.placeholder-ellipsis {
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+
+.disabled-option {
+  background-color: #c5c5c5;
+  color: white;
 }
