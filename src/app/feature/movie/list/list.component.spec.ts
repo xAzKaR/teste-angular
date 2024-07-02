@@ -46,7 +46,6 @@ describe('MovieListComponent', () => {
   });
 
   it('should get movies from data if getAllPaging is successfull', () => {
-
     const mock: PaginationMovieModel = mockMoviePagination.filledContent;
 
     spyOn(component, 'clearData').and.stub();
@@ -66,6 +65,17 @@ describe('MovieListComponent', () => {
     expect(component.clearData).toHaveBeenCalled();
   });
 
+  it('should call clearPagination', () => {
+    spyOn(component, 'clearPagination').and.callThrough();
+    component.totalElements = 30;
+    component.currentPage = 2;
+    component.clearPagination();
+
+    expect(component.clearPagination).toHaveBeenCalled();
+    expect(component.totalElements).toEqual(0);
+    expect(component.currentPage).toEqual(1);
+  });
+
   it('should call clearData', () => {
     spyOn(component, 'clearData');
     component.clearData();
@@ -76,12 +86,12 @@ describe('MovieListComponent', () => {
   it('should call onPageChange', () => {
     const event = {
       itemsPerPage: 15,
-      page: 1
+      page: 2
     }
     spyOn(component, 'search');
     component.onPageChange(event);
 
-    expect(component.currentPage).toEqual(1);
+    expect(component.currentPage).toEqual(2);
     expect(component.search).toHaveBeenCalled();
   });
 
@@ -98,6 +108,20 @@ describe('MovieListComponent', () => {
     expect(component.search).toHaveBeenCalled();
   });
 
+  it('should call onChangeYear with undefined value', () => {
+    const event = {
+      target: {
+        value: '-1'
+      }
+    }
+    spyOn(component, 'search');
+    component.onChangeYear(event);
+
+    expect(component.year).toBeUndefined;
+    expect(component.search).toHaveBeenCalled();
+  });
+
+
   it('should call onChangeWinner', () => {
     const event = {
       target: {
@@ -108,6 +132,36 @@ describe('MovieListComponent', () => {
     component.onChangeWinner(event);
 
     expect(component.winner).toEqual(true);
+    expect(component.search).toHaveBeenCalled();
+  });
+
+  it('should call onChangeWinner with changeFilter false', () => {
+    spyOn(component, 'onChangeWinner').and.callThrough();
+    spyOn(component, 'search').and.callThrough();
+    component.winner = false;
+    component.changeFilter = false;
+    const event = {
+      target: {
+        value: true
+      }
+    }
+    component.onChangeWinner(event);
+
+    expect(component.winner).toEqual(true);
+    expect(component.changeFilter).toEqual(true);
+    expect(component.search).toHaveBeenCalled();
+  });
+
+  it('should call onChangeWinner  with undefined value', () => {
+    const event = {
+      target: {
+        value: '-1'
+      }
+    }
+    spyOn(component, 'search');
+    component.onChangeWinner(event);
+
+    expect(component.winner).toBeUndefined;
     expect(component.search).toHaveBeenCalled();
   });
 });
