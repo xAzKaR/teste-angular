@@ -10,13 +10,15 @@ import { WinnerMovieListComponent } from './movie/list.component';
 import { WinnerMultipleListComponent } from './multiple/list.component';
 import { WinnerStudioListComponent } from './studio/list.component';
 import { WinnerProducerListComponent } from './producer/list.component';
+import { WinnerClientListComponent } from './cliente/list/list.component';
 
 @NgModule({
   declarations: [
     WinnerMultipleListComponent,
     WinnerStudioListComponent,
     WinnerProducerListComponent,
-    WinnerMovieListComponent
+    WinnerMovieListComponent,
+    WinnerClientListComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { WinnerProducerListComponent } from './producer/list.component';
     WinnerMultipleListComponent,
     WinnerStudioListComponent,
     WinnerProducerListComponent,
-    WinnerMovieListComponent
+    WinnerMovieListComponent,
+    WinnerClientListComponent
   ]
 })
 export class WinnerModule { }

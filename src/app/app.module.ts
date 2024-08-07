@@ -19,13 +19,12 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent,
     NavbarComponent,
     SidebarComponent,
-    DashboardComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     PaginationModule.forRoot(),
     AppRoutingModule,
-    BrowserModule,
     FontAwesomeModule,
     HttpClientModule,
     WinnerModule,

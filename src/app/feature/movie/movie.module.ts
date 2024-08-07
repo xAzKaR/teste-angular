@@ -6,19 +6,22 @@ import { HttpClientModule } from '@angular/common/http';
 import { MovieRoutingModule } from './movie-routing.module';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { MovieListComponent } from './list/list.component';
+import { ClienteListComponent } from '../cliente/list/list.component';
 
 @NgModule({
   declarations: [
-    MovieListComponent
+    MovieListComponent,
+    ClienteListComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     MovieRoutingModule,
-    PaginationModule.forRoot()
+    PaginationModule.forRoot(),
   ],
   exports: [
-    MovieListComponent
+    MovieListComponent,
+    ClienteListComponent
   ]
 })
 export class MovieModule { }
